@@ -2178,7 +2178,14 @@ void PWM1Gen2_IRQHandler(void);
 void PWM1Gen3_IRQHandler(void);
 void PWM1Fault_IRQHandler(void);
 
-
+/**
+ * Assertion handler
+ *
+ * @brief  A function to handle an assertion.
+ *         This function should be defined at the application level
+ *         and should never return to the caller.
+ */
+extern void assert_failed (char const *file, int line);
 
 
 
