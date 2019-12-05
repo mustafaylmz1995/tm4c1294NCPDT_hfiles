@@ -24,11 +24,11 @@ void SystemInit(void);       /* CMSIS system initialization */
 * Any function with the same name will override these definitions.
 */
 /* Cortex-M Processor fault exceptions... */
-void NonMaskableInt_IRQHandler    (void) __attribute__ ((weak, alias("Default_IRQHandler"))); 
-void HardFault_IRQHandler         (void) __attribute__ ((weak, alias("Default_IRQHandler")));
-void MemoryManagement_IRQHandler  (void) __attribute__ ((weak, alias("Default_IRQHandler")));  
-void BusFault_IRQHandler          (void) __attribute__ ((weak, alias("Default_IRQHandler")));    
-void UsageFault_IRQHandler        (void) __attribute__ ((weak, alias("Default_IRQHandler")));    
+void NonMaskableInt_IRQHandler    (void) __attribute__ ((weak));
+void HardFault_IRQHandler         (void) __attribute__ ((weak));
+void MemoryManagement_IRQHandler  (void) __attribute__ ((weak));
+void BusFault_IRQHandler          (void) __attribute__ ((weak));
+void UsageFault_IRQHandler        (void) __attribute__ ((weak));
 
 /* Cortex-M Processor non-fault exceptions... */
 void SVCall_IRQHandler            (void) __attribute__ ((weak, alias("Default_IRQHandler")));      
