@@ -17756,7 +17756,9 @@ void GPIOT_IRQHandler(void);
  *         This function should be defined at the application level
  *         and should never return to the caller.
  */
-extern void assert_failed (char const *file, int line);
+extern void assert_failed (char const *module, int loc);
+
+extern void Q_onAssert (char const *module, int loc);
 
 
 /** @} */ /* End of group Device_Peripheral_Registers */

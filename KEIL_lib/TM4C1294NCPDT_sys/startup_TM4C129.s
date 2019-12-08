@@ -253,13 +253,14 @@ __Vectors_Size  EQU     __Vectors_End - __Vectors
 Reset_Handler   PROC
                 EXPORT  Reset_Handler             [WEAK]
                 IMPORT  SystemInit
-                IMPORT  __main
+                IMPORT  main
+
                 LDR     R0, =SystemInit; CMSIS system initialization
                 BLX     R0
         	; Call the C library enty point that handles startup. This will copy
         	; the .data section initializers from flash to SRAM and zero fill the
         	; .bss section.
-                LDR     R0, =__main
+                LDR     R0, =main
                 BX      R0
         	; __main calls the main() function, which should not return,
         	; but just in case jump to assert_failed() if main returns.
@@ -373,6 +374,9 @@ PendSV_IRQHandler\
 SysTick_IRQHandler\
                 PROC
                 EXPORT  SysTick_IRQHandler           [WEAK]
+;       			 IMPORT  SysTick_IRQHandler
+
+       			LDR     R0, =SysTick_IRQHandler
         	MOVS    R0,#0
         	MOVS    R1,#15      ; SysTick exception number
         	B       assert_failed
@@ -651,7 +655,7 @@ GPIOT_IRQHandler
                 IF      :DEF:__MICROLIB
 
                 EXPORT  __initial_sp
-		EXPORT  __stack_limit
+				EXPORT  __stack_limit
                 EXPORT  __heap_base
                 EXPORT  __heap_limit
 
@@ -681,18 +685,29 @@ __user_initial_stackheap
 ; void assert_failed(char const *file, int line);
 ; void Q_onAssert   (char const *file, int line);
 ;******************************************************************************
-       		EXPORT  assert_failed
-       		IMPORT  Q_onAssert
+        EXPORT  assert_failed
+        IMPORT  Q_onAssert
+			
 assert_failed PROC
 
-        	LDR    sp,=__initial_sp  ; re-set the SP in case of stack overflow
-        	BL     Q_onAssert        ; call the application-specific handler
+        LDR    sp,=__initial_sp  ; re-set the SP in case of stack overflow
+		LDR	   R0, =Q_onAssert
+        BLX    R0        ; call the application-specific handler
+        ;B      .                 ; should not be reached, but just in case...
 
-        	B      .                 ; should not be reached, but just in case...
+        ENDP
 
-        	ENDP
+        ALIGN                    ; make sure the end of this section is aligned
 
-                ALIGN
+        END                      ; end of module
 
 
-                END
+;                PROC
+;                EXPORT  SysTick_IRQHandler           [WEAK]
+;       			 IMPORT  SysTick_IRQHandler
+
+;       			LDR     R0, =SysTick_IRQHandler
+;        	MOVS    R0,#0
+;        	MOVS    R1,#15      ; SysTick exception number
+;        	B       assert_failed
+
