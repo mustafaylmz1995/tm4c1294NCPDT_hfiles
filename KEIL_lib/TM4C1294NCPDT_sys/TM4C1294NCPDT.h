@@ -2048,14 +2048,12 @@ typedef struct {                                    /*!< CCM0 Structure         
 #define CCM0                            ((CCM0_Type               *) CCM0_BASE)
 
 
-/****************************************************/
 
-
-//*****************************************************************************
 //
 // Interrupt assignments
 //
-//*****************************************************************************
+//*****************************************************************************/
+
 #define INT_GPIOA               16          // GPIO Port A
 #define INT_GPIOB               17          // GPIO Port B
 #define INT_GPIOC               18          // GPIO Port C
@@ -17714,7 +17712,8 @@ void SYSEXC_IRQHandler(void);
 void I2C4_IRQHandler(void);             
 void I2C5_IRQHandler(void);             
 void GPIOM_IRQHandler(void);            
-void GPION_IRQHandler(void);            
+void GPION_IRQHandler(void); 
+void TAMPER_IRQHandler(void); 
 void GPIOP0_IRQHandler(void);           
 void GPIOP1_IRQHandler(void);           
 void GPIOP2_IRQHandler(void);           
@@ -17739,6 +17738,16 @@ void I2C6_IRQHandler(void);
 void I2C7_IRQHandler(void);             
 void I2C8_IRQHandler(void);             
 void I2C9_IRQHandler(void);
+void HIMSCANKEYBOARD_IRQHandler(void);
+void ONEWIRE_IRQHandler(void);        
+void HIMPS2_IRQHandler(void);          
+void HIMLEDSEQUENCER_IRQHandler(void); 
+void HIMCONSUMERIR_IRQHandler(void);   
+void I2C8_IRQHandler(void);            
+void I2C9_IRQHandler(void);            
+void GPIOT_IRQHandler(void);           
+
+
 
 /**
  * Assertion handler
