@@ -8,8 +8,7 @@
 
 ---
 
-CMSIS-compliant header files for TI TM4C1294NCPDT microcontroller.
+CMSIS header files for TI TM4C1294NCPDT — GPIO, UART, SPI, I2C, ADC, Timer, PWM register definitions.
 
-## 📄 License
-
+## License
 MIT License.
